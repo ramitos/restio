@@ -1,0 +1,22 @@
+{
+  "name": "restio",
+  "version": "0.0.1",
+  "description": "engine.io REST helper",
+  "main": "src/server/restio.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ramitos/restio"
+  },
+  "keywords": [
+    "socket.io",
+    "rest",
+    "crud"
+  ],
+  "dependencies": {
+    "match-route": "0.0.x",
+    "engine.io": "0.3.x",
+    "sgen": "0.0.x"
+  },
+  "author": "Sérgio Ramos",
+  "license": "MIT"
+}

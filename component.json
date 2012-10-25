@@ -1,0 +1,10 @@
+{
+  "name": "restio",
+  "version": "0.0.1",
+  "main": "src/client/restio.js",
+  "scripts": ["src/client/restio.js"],
+  "dependencies": {
+    "ramitos/match-route": "*",
+    "ramitos/sgen": "*"
+  }
+}
