@@ -7,7 +7,7 @@ module.exports.listen = function () {
   if(typeof arguments[0] === 'object') var isHTTP = true
   else var isHTTP = false
   
-  if(isHTTP) var server = engine.atach(arguments[0])
+  if(isHTTP) var server = engine.attach(arguments[0])
   else var server = engine.listen(arguments[0])
   
   var io = new Object()

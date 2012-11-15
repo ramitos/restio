@@ -1,5 +1,6 @@
 module.exports = function (cookies) {
   var response = new Object()
+  if(!cookies) return {}
   var cookiekeys = cookies.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/)
 
   cookiekeys.forEach(function (cookie) {
