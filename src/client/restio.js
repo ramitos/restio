@@ -64,7 +64,7 @@ var setup = function (io, socket) {
         else id = sgen(10);
       }
 
-      if(callbacks) callback.tm = setTimeout(function () {
+      if(callback) callback.tm = setTimeout(function () {
         delete io.callbacks[method][id];
       }, 3600000);
 
