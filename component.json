@@ -1,10 +1,21 @@
 {
   "name": "restio",
-  "version": "0.0.1",
+  "license": "MIT",
+  "version": "0.0.3",
+  "twitter": "@ramitos",
+  "description": "REST-like syntax for websockets",
   "main": "src/client/restio.js",
-  "scripts": ["src/client/restio.js"],
+  "scripts": [
+    "src/client/restio.js",
+    "src/client/setup.js"
+  ],
   "dependencies": {
+    "LearnBoost/engine.io-client": "*",
     "ramitos/match-route": "*",
     "ramitos/sgen": "*"
+  },
+  "development": {
+    "visionmedia/mocha": "*",
+    "component/assert": "*"
   }
 }

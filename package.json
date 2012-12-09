@@ -1,22 +1,29 @@
 {
   "name": "restio",
-  "version": "0.0.2",
-  "description": "engine.io REST helper",
+  "license": "MIT",
+  "version": "0.0.3",
+  "author": "Sérgio Ramos",
+  "description": "REST-like syntax for websockets",
   "main": "src/server/restio.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ramitos/restio"
   },
-  "keywords": ["socket.io", "rest", "crud"],
+  "keywords": [
+    "socket.io",
+    "websockets",
+    "engine.io",
+    "rest",
+    "crud"
+  ],
   "dependencies": {
     "match-route": "0.0.x",
     "engine.io": "0.3.x",
     "sgen": "0.0.x"
   },
-  "author": "Sérgio Ramos",
-  "license": "MIT",
   "devDependencies": {
-    "kip": "0.0.8beta",
-    "blage": "0.0.7"
+    "better-assert": "0.1.x"
+    "blage": "0.0.x",
+    "kip": "*"
   }
 }

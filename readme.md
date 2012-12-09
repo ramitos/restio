@@ -1,5 +1,17 @@
 # restio
 
+REST-like syntax for websockets built on top of [engine.io](https://github.com/LearnBoost/engine.io)
+
+## install
+
+```bash
+$ component install [--dev] ramitos/restio
+```
+
+```bash
+$ npm install [--save/--save-dev] restio
+```
+
 ## usage
 
 ### server
@@ -20,11 +32,18 @@ Object.keys(io.clients).forEach(function (id) {
 
 ### client
 
-*only component/component supported at the moment*
-
 ```js
 require('restio').listen('http://localhost:7589', function (io) {
   io.get('/user/4', function (user) {})
   io.on.post('/user', function (params, query, data, respond) {})
 })
 ```
+
+## todo
+
+ * api documentation
+ * test suite
+
+## license
+
+MIT
