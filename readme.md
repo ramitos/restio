@@ -2,7 +2,7 @@
 
 REST-like syntax for WebSockets built on top of [engine.io](https://github.com/LearnBoost/engine.io)
 
-([more](restio/blob/master/documentation.md))
+([more](restio/blob/master/docs/intro.md))
 
 ## install
 
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
 var assert = require('assert'),
     restio = require('restio');
 
-restio.listen(document.location.origin, function (io) {
+restio.connect(document.location.origin, function (io) {
   io.on.get('/status', function (req, res) {
     assert(Object.keys(req.params).length == 0);
     assert(Object.keys(req.query).length == 0);
@@ -65,7 +65,7 @@ restio.listen(document.location.origin, function (io) {
 ```
 
 ## todo
- * support `chunked` data responses
+ * support streamed `req.body`
  * api documentation
  * test suite
 

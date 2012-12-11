@@ -5,7 +5,7 @@ var methods = require('../methods'),
     eio = require('engine.io'),
     getOn = require('../on');
 
-module.exports.listen = function (addr, callback) {
+module.exports.connect = function (addr, callback) {
   var socket = new eio.Socket(addr);
   var callbacks = {};
   var io = {on: {}};
