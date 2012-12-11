@@ -20,9 +20,14 @@ module.exports = function (socket, callbacks, routes) {
   
   on.request = function (req) {
     mr(req, routes, function (callback, route, params, query) {
-      callback(params, query, req.data, function (data) {
+      callback({
+        socket: platform == 'node' ? socket : undefined,
+        params: params,
+        body: req.data,
+        query: query
+      }, function (data) {
         socket.send(packet.parse(req.method, data, req.url, req.id, true));
-      }, platform == 'node' ? socket : undefined);
+      });
     });
   };
   

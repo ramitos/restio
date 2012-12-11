@@ -58,12 +58,12 @@ var parseArgs = function (arguments) {
     returns.url = args.shift();
     returns.callback = noop;
     returns.data = {};
-  } else if(args.length == 2 && type(agrs[1]) == 'function') {
+  } else if(args.length == 2 && type(args[1]) == 'function') {
     assert(type(args[0]) == 'string');
     returns.url = args.shift();
     returns.callback = args.shift();
     returns.data = {};
-  } else if(args.length == 2 && type(agrs[1]) == 'object') {
+  } else if(args.length == 2 && type(args[1]) == 'object') {
     assert(type(args[0]) == 'string');
     returns.url = args.shift();
     returns.callback = noop;

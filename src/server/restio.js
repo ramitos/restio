@@ -24,7 +24,7 @@ module.exports.listen = function () {
     
     methods.forEach(function (method) {
       setup.methods(method, callbacks, {});
-      setup.request(method, socket, callbacks);
+      setup.request(method, socket, socket, callbacks);
     });
     
     io.emit('connection', socket);
