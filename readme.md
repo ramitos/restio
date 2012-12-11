@@ -2,7 +2,7 @@
 
 REST-like syntax for WebSockets built on top of [engine.io](https://github.com/LearnBoost/engine.io)
 
-([more](ramitos/restio/blob/master/documentation.md))
+([more](blob/master/documentation.md))
 
 ## install
 
