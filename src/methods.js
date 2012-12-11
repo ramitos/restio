@@ -1,0 +1,1 @@
+module.exports = new Array('get', 'post', 'put', 'delete');

@@ -1,9 +1,9 @@
 {
   "name": "restio",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "Sérgio Ramos",
-  "description": "REST-like syntax for websockets",
+  "description": "REST-like syntax for WebSockets",
   "main": "src/server/restio.js",
   "repository": {
     "type": "git",
@@ -17,13 +17,17 @@
     "crud"
   ],
   "dependencies": {
-    "match-route": "0.0.x",
+    "type-component": "0.0.x",
+    "match-route": "0.1.x",
     "engine.io": "0.3.x",
+    "cookie": "0.0.x",
     "sgen": "0.0.x"
   },
   "devDependencies": {
-    "better-assert": "0.1.x"
+    "engine.io-client": "0.4.x",
+    "mocha": "1.7.x",
     "blage": "0.0.x",
+    "chai": "1.4.x",
     "kip": "*"
   }
 }

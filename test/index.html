@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body></body>
+  <head>
+    <script src='../build/build.js'></script>
+<!-- <script src='../node_modules/mocha/mocha.js'></script>-->
+  </head>
+  <body>
+    <script>
+      var restio = require('restio')
+      restio.listen(document.location.origin, function (io) {
+        window.io = io
+      });
+    </script>
+  </body>
 </html>

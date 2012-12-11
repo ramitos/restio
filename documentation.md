@@ -1,18 +1,10 @@
 # restio
 
-REST-like syntax for WebSockets built on top of [engine.io](https://github.com/LearnBoost/engine.io)
+## what
 
-## install
+**restio** aims to provide a *REST-like* interface to WebSockets for [node.js](nodejs.org). It was created to help structure realtime apps with a well known interface.
 
-```bash
-$ component install [--dev] ramitos/restio
-```
-
-```bash
-$ npm install [--save/--save-dev] restio
-```
-
-## usage
+It's built on top of [engine.io](https://github.com/LearnBoost/engine.io) and its client-side code was structured upon [component(1)](https://github.com/component/component)
 
 #### server
 
@@ -54,19 +46,10 @@ restio.listen(document.location.origin, function (io) {
     assert(Object.keys(data).length == 0);
     respond({running: true});
   });
-
+  
   io.get('/user/5', function (user) {
     assert(Object.keys(user).length == 1);
     assert(user.id == 5);
   });
 });
 ```
-
-## todo
-
- * api documentation
- * test suite
-
-## license
-
-MIT

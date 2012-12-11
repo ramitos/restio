@@ -1,16 +1,17 @@
 var blage = require('blage'),
     http = require('http'),
     path = require('path'),
-    kip = require('kip')
+    kip = require('kip');
 
-var server = http.createServer(blage(kip(path.dirname(__filename)))).listen(7589);
+var file = kip(path.join(path.dirname(__filename), '..'));
+var server = http.createServer(blage(file)).listen(7589);
 var io = require('../').listen(server);
 
-io.on.get('/user/:id', function (params, query, data, socket, respond) {
+io.on.get('/user/:id', function (params, query, data, respond, socket) {
   respond({id: params.id});
   //send to all
-  Object.keys(io.clients).forEach(function (id) {
-    //callback will only be called if the client responds
-    io.clients[id].post('/user', {id: 10}, function (data) {});
-  });
 });
+
+io.on('connection', function () {
+  console.log(arguments);
+})
