@@ -54,6 +54,6 @@ restio.connect(document.location.origin, function (io) {
 });
 ```
 
-## api
+## documentation
 ### [client](client.md)
 ### [server](server.md)

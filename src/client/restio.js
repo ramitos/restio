@@ -3,12 +3,13 @@ var methods = require('../methods'),
     setup = require('../setup'),
     mr = require('match-route'),
     eio = require('engine.io'),
-    getOn = require('../on');
+    getOn = require('../on'),
+    ev = require('emitter');
 
 module.exports.connect = function (addr, callback) {
   var socket = new eio.Socket(addr);
   var callbacks = {};
-  var io = {on: {}};
+  var io = new ev();
   var routes = {};
     
   methods.forEach(function (method) {
@@ -19,12 +20,11 @@ module.exports.connect = function (addr, callback) {
   
   var on = getOn(socket, callbacks, routes);
   
-  on.error = function (e) {
-    throw e;
-  };
-  
   socket.on('message', on.message);
-  socket.on('error', on.error);
+  
+  socket.on('error', function (e) {
+    io.emit('error', e);
+  });
   
   socket.on('open', function () {
     callback(io);
