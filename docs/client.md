@@ -46,7 +46,7 @@ var restio = require('restio');
 
 **parameters**:
  * *string* **url**: the url to connect. ex: `'ws://example.com'`, `'http://example.com'`, `'https://socket.example.com'`, `'wss://www.example.com'`
- * *function* **callback(object: [io](#))**: function that will be called after the connection has been established
+ * *function* **callback(object: [io](#io))**: function that will be called after the connection has been established
 
 **example**:
 
@@ -155,7 +155,7 @@ io.on('error', function (e) {
 
 **parameters**:
   * *string* **path**: the path pattern of the request. ex: `'/book/:isbn'`
-  * *function* **callback(object: [req](#), function: res)**: function to handle the request
+  * *function* **callback(object: [req](#request), function: res)**: function to handle the request
 
 **example**:
 
@@ -175,7 +175,7 @@ io.get('/book/:isbn', function (req, res) {
 
 **parameters**:
   * *string* **path**: the path pattern of the request. ex: `'/book'`
-  * *function* **callback(object: [req](#), function: res)**: function to handle the request
+  * *function* **callback(object: [req](#request), function: res)**: function to handle the request
 
 **example**:
 
@@ -191,7 +191,7 @@ io.post('/book', function (req, res) {
 
 **parameters**:
   * *string* **path**: the path pattern of the request. ex: `'/book'`
-  * *function* **callback(object: [req](#), function: res)**: function to handle the request
+  * *function* **callback(object: [req](#request), function: res)**: function to handle the request
 
 **example**:
 
@@ -207,7 +207,7 @@ io.put('/book/:isbn', function (req, res) {
 
 **parameters**:
   * *string* **path**: the path pattern of the request. ex: `'/book'`
-  * *function* **callback(object: [req](#), function: res)**: function to handle the request
+  * *function* **callback(object: [req](#request), function: res)**: function to handle the request
 
 **example**:
 
