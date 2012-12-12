@@ -4,3 +4,4 @@ components
 build
 component.json
 src/client
+dist

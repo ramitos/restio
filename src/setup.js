@@ -47,8 +47,8 @@ var isNode = function () {
   return window == undefined;
 };
 
-var parseArgs = function (arguments) {
-  var args = Array.prototype.slice.call(arguments);
+var parseArgs = function (args) {
+  args = Array.prototype.slice.call(args);
   var returns = {};
   
   if(!args.length) {
