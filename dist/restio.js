@@ -185,157 +185,7 @@ require.relative = function(parent) {
   };
 
   return fn;
-};require.register("component-emitter/index.js", function(module, exports, require){
-
-/**
- * Expose `Emitter`.
- */
-
-module.exports = Emitter;
-
-/**
- * Initialize a new `Emitter`.
- *
- * @api public
- */
-
-function Emitter(obj) {
-  if (obj) return mixin(obj);
-};
-
-/**
- * Mixin the emitter properties.
- *
- * @param {Object} obj
- * @return {Object}
- * @api private
- */
-
-function mixin(obj) {
-  for (var key in Emitter.prototype) {
-    obj[key] = Emitter.prototype[key];
-  }
-  return obj;
-}
-
-/**
- * Listen on the given `event` with `fn`.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.on = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  (this._callbacks[event] = this._callbacks[event] || [])
-    .push(fn);
-  return this;
-};
-
-/**
- * Adds an `event` listener that will be invoked a single
- * time then automatically removed.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.once = function(event, fn){
-  var self = this;
-  this._callbacks = this._callbacks || {};
-
-  function on() {
-    self.off(event, on);
-    fn.apply(this, arguments);
-  }
-
-  fn._off = on;
-  this.on(event, on);
-  return this;
-};
-
-/**
- * Remove the given callback for `event` or all
- * registered callbacks.
- *
- * @param {String} event
- * @param {Function} fn
- * @return {Emitter}
- * @api public
- */
-
-Emitter.prototype.off = function(event, fn){
-  this._callbacks = this._callbacks || {};
-  var callbacks = this._callbacks[event];
-  if (!callbacks) return this;
-
-  // remove all handlers
-  if (1 == arguments.length) {
-    delete this._callbacks[event];
-    return this;
-  }
-
-  // remove specific handler
-  var i = callbacks.indexOf(fn._off || fn);
-  if (~i) callbacks.splice(i, 1);
-  return this;
-};
-
-/**
- * Emit `event` with the given args.
- *
- * @param {String} event
- * @param {Mixed} ...
- * @return {Emitter}
- */
-
-Emitter.prototype.emit = function(event){
-  this._callbacks = this._callbacks || {};
-  var args = [].slice.call(arguments, 1)
-    , callbacks = this._callbacks[event];
-
-  if (callbacks) {
-    callbacks = callbacks.slice(0);
-    for (var i = 0, len = callbacks.length; i < len; ++i) {
-      callbacks[i].apply(this, args);
-    }
-  }
-
-  return this;
-};
-
-/**
- * Return array of callbacks for `event`.
- *
- * @param {String} event
- * @return {Array}
- * @api public
- */
-
-Emitter.prototype.listeners = function(event){
-  this._callbacks = this._callbacks || {};
-  return this._callbacks[event] || [];
-};
-
-/**
- * Check if this emitter has `event` handlers.
- *
- * @param {String} event
- * @return {Boolean}
- * @api public
- */
-
-Emitter.prototype.hasListeners = function(event){
-  return !! this.listeners(event).length;
-};
-
-
-});
-require.register("visionmedia-debug/index.js", function(module, exports, require){
+};require.register("visionmedia-debug/index.js", function(module, exports, require){
 if ('undefined' == typeof window) {
   module.exports = require('./lib/debug');
 } else {
@@ -549,7 +399,7 @@ exports.decodePacket = function (data) {
 
 /**
  * Encodes multiple messages (payload).
- *
+ * 
  *     <length>:data
  *
  * Example:
@@ -2900,7 +2750,7 @@ require.register("redventures-reduce/index.js", function(module, exports, requir
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){
+module.exports = function(arr, fn, initial){  
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -2910,7 +2760,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-
+  
   return curr;
 };
 });
@@ -3041,7 +2891,7 @@ module.exports = function (req, routes, callback) {
   var value = null;
   var mroute = '';
 
-
+  
   if(routes[method]) Object.keys(routes[method]).forEach(function (route) {
     var keys = new Array();
     var rexp = regex(route, keys, false, false);
@@ -3059,6 +2909,156 @@ module.exports = function (req, routes, callback) {
 
   callback(value, mroute, params, query);
 };
+});
+require.register("component-emitter/index.js", function(module, exports, require){
+
+/**
+ * Expose `Emitter`.
+ */
+
+module.exports = Emitter;
+
+/**
+ * Initialize a new `Emitter`.
+ * 
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks[event] = this._callbacks[event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  var self = this;
+  this._callbacks = this._callbacks || {};
+
+  function on() {
+    self.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  fn._off = on;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  var callbacks = this._callbacks[event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks[event];
+    return this;
+  }
+
+  // remove specific handler
+  var i = callbacks.indexOf(fn._off || fn);
+  if (~i) callbacks.splice(i, 1);
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter} 
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks[event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks[event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
+
 });
 require.register("component-type/index.js", function(module, exports, require){
 
@@ -3098,26 +3098,26 @@ var map = require('./map');
 
 module.exports.timestamp = function (from) {
   if(!from) from = 1328054400000; //2012/1/1
-
+  
   var timestamp = (new Date().getTime() - from).toString().split('');
   var elements = [];
   var hash = '';
-
+  
   for(var i = 0; i < timestamp.length; i += 1) {
     if(i%2 === 0) elements.push(timestamp[i]);
     else elements[elements.length -1] += timestamp[i];
   }
-
+  
   for(var y = 0; y < elements.length; y += 1) {
     hash += map[elements[y]];
   }
-
+  
   return hash;
 }
 
 module.exports.random = function (length) {
   if(!length) length = 6;
-
+  
   var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.split('');
   var hash = [];
 
@@ -3241,112 +3241,35 @@ module.exports = {
   "09": "ba"
 }
 });
-require.register("component-stack/index.js", function(module, exports, require){
-
-/**
- * Expose `stack()`.
- */
-
-module.exports = stack;
-
-/**
- * Return the stack.
- *
- * @return {Array}
- * @api public
- */
-
-function stack() {
-  var orig = Error.prepareStackTrace;
-  Error.prepareStackTrace = function(_, stack){ return stack; };
-  var err = new Error;
-  Error.captureStackTrace(err, arguments.callee);
-  var stack = err.stack;
-  Error.prepareStackTrace = orig;
-  return stack;
-}
-});
-require.register("component-assert/index.js", function(module, exports, require){
-
-/**
- * Module dependencies.
- */
-
-var stack = require('stack');
-
-/**
- * Load contents of `script`.
- *
- * @param {String} script
- * @return {String}
- * @api private
- */
-
-function getScript(script) {
-  var xhr = new XMLHttpRequest;
-  xhr.open('GET', script, false);
-  xhr.send(null);
-  return xhr.responseText;
-}
-
-/**
- * Assert `expr` with optional failure `msg`.
- *
- * @param {Mixed} expr
- * @param {String} [msg]
- * @api public
- */
-
-module.exports = function(expr, msg){
-  if (expr) return;
-  if (!msg) {
-    if (Error.captureStackTrace) {
-      var callsite = stack()[1];
-      var fn = callsite.fun.toString();
-      var file = callsite.getFileName();
-      var line = callsite.getLineNumber() - 1;
-      var col = callsite.getColumnNumber() - 1;
-      var src = getScript(file);
-      line = src.split('\n')[line].slice(col);
-      expr = line.match(/assert\((.*)\)/)[1].trim();
-      msg = expr;
-    } else {
-      msg = 'assertion failed';
-    }
-  }
-
-  throw new Error(msg);
-};
-});
 require.register("restio/src/client/restio.js", function(module, exports, require){
 var methods = require('../methods'),
     packet = require('../packet'),
     setup = require('../setup'),
     mr = require('match-route'),
     eio = require('engine.io'),
-    getOn = require('../on');
+    getOn = require('../on'),
+    ev = require('emitter');
 
 module.exports.connect = function (addr, callback) {
   var socket = new eio.Socket(addr);
   var callbacks = {};
-  var io = {on: {}};
+  var io = new ev();
   var routes = {};
-
+    
   methods.forEach(function (method) {
     setup.methods(method, callbacks, routes);
     setup.request(method, io, socket, callbacks);
     setup.on(method, io, routes);
   });
-
+  
   var on = getOn(socket, callbacks, routes);
-
-  on.error = function (e) {
-    throw e;
-  };
-
+  
   socket.on('message', on.message);
-  socket.on('error', on.error);
-
+  
+  socket.on('error', function (e) {
+    io.emit('error', e);
+  });
+  
   socket.on('open', function () {
     callback(io);
   });
@@ -3389,10 +3312,10 @@ module.exports.request = function (method, io, socket, callbacks) {
   io[method] = function () {
     var args = parseArgs(arguments)
     var id = sgen.timestamp();
-
+    
     socket.send(packet.parse(method, args.data, args.url, id, false));
     callbacks[method][id] = args.callback;
-
+  
     args.callback.tm = setTimeout(function () {
       clearTimeout(callbacks[method][id].tm);
       callbacks[method][id] = undefined;
@@ -3402,7 +3325,7 @@ module.exports.request = function (method, io, socket, callbacks) {
 
 module.exports.server = function (arg) {
   assert(type(arg) == 'string' || type(arg) == 'object');
-
+  
   if(type(arg) == 'string') return engine.listen(arg);
   else return engine.attach(arg)
 };
@@ -3416,7 +3339,7 @@ var isNode = function () {
 var parseArgs = function (args) {
   args = Array.prototype.slice.call(args);
   var returns = {};
-
+  
   if(!args.length) {
     assert(args.length >= 1);
   } else if(args.length == 1) {
@@ -3445,7 +3368,7 @@ var parseArgs = function (args) {
     returns.data = args.shift();
     returns.callback = args.shift();
   }
-
+  
   return returns;
 };
 });
@@ -3462,19 +3385,19 @@ var platform = require('./platform'),
 
 module.exports = function (socket, callbacks, routes) {
   var on = {};
-
+  
   on.message = function (msg) {
     msg = JSON.parse(msg)
     if(msg.rsp && callbacks[msg.method][msg.id]) on.response(msg);
     else if(!msg.rsp) on.request(msg);
   };
-
+  
   on.response = function (res) {
     clearTimeout(callbacks[res.method][res.id].tm);
     callbacks[res.method][res.id](res.data);
     callbacks[res.method][res.id] = undefined;
   };
-
+  
   on.request = function (req) {
     mr(req, routes, function (callback, route, params, query) {
       callback({
@@ -3487,7 +3410,7 @@ module.exports = function (socket, callbacks, routes) {
       });
     });
   };
-
+  
   return on;
 };
 
@@ -3522,14 +3445,13 @@ require.alias("redventures-reduce/index.js", "component-querystring/deps/reduce/
 
 require.alias("component-url/index.js", "ramitos-match-route/deps/url/index.js");
 
+require.alias("component-emitter/index.js", "restio/deps/emitter/index.js");
+
 require.alias("component-type/index.js", "restio/deps/type/index.js");
 
 require.alias("ramitos-sgen/src/sgen.js", "restio/deps/sgen/src/sgen.js");
 require.alias("ramitos-sgen/src/map.js", "restio/deps/sgen/src/map.js");
 require.alias("ramitos-sgen/src/sgen.js", "restio/deps/sgen/index.js");
-
-require.alias("component-assert/index.js", "restio/deps/assert/index.js");
-require.alias("component-stack/index.js", "component-assert/deps/stack/index.js");
 
 require.alias("restio/src/client/restio.js", "restio/index.js");
   if ("undefined" == typeof module) {
