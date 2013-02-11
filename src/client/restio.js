@@ -4,7 +4,7 @@ var requires = require('../requires'),
     setup = require('../setup'),
     mr = require('match-route'),
     getOn = require('../on');
-    
+
 var eio = requires.eio;
 var ev = requires.ev;
 
@@ -13,22 +13,23 @@ module.exports.connect = function (addr, callback) {
   var callbacks = {};
   var io = new ev();
   var routes = {};
-  
+
   methods.forEach(function (method) {
     setup.methods(method, callbacks, routes);
     setup.request(method, io, socket, callbacks);
     setup.on(method, io, routes);
   });
-  
+
   var on = getOn(socket, callbacks, routes);
-  
+
   socket.on('message', on.message);
-  
+
   socket.on('error', function (e) {
     io.emit('error', e);
   });
-  
+
   socket.on('open', function () {
+    io.socket = socket;
     callback(io);
   });
 };
