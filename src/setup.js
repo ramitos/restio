@@ -1,12 +1,11 @@
-var requires = require('./requires'),
+var type = require('./requires').type,
     methods = require('./methods'),
+    engine = require('engine.io'),
     packet = require('./packet'),
     assert = require('assert'),
     sgen = require('sgen'),
     noop = function () {};
 
-var engine = requires.eio
-var type = requires.type
 
 module.exports.methods = function (method, callbacks, routes) {
   callbacks[method] = {};
@@ -25,10 +24,10 @@ module.exports.request = function (method, io, socket, callbacks) {
   io[method] = function () {
     var args = parseArgs(arguments)
     var id = sgen.timestamp();
-    
+
     socket.send(packet.parse(method, args.data, args.url, id, false));
     callbacks[method][id] = args.callback;
-  
+
     args.callback.tm = setTimeout(function () {
       clearTimeout(callbacks[method][id].tm);
       callbacks[method][id] = undefined;
@@ -36,11 +35,11 @@ module.exports.request = function (method, io, socket, callbacks) {
   };
 };
 
-module.exports.server = function (arg) {
-  assert(type(arg) == 'string' || type(arg) == 'object');
-  
-  if(type(arg) == 'string') return engine.listen(arg);
-  else return engine.attach(arg)
+module.exports.server = function (args) {
+  assert(type(args[0]) == 'number' || type(args[0]) == 'object');
+
+  if(type(args[0]) == 'number') return engine.listen.apply(engine, args);
+  else return engine.attach.apply(engine, args)
 };
 
 /*********************************** PRIVATE **********************************/
@@ -52,7 +51,7 @@ var isNode = function () {
 var parseArgs = function (args) {
   args = Array.prototype.slice.call(args);
   var returns = {};
-  
+
   if(!args.length) {
     assert(args.length >= 1);
   } else if(args.length == 1) {
@@ -81,6 +80,6 @@ var parseArgs = function (args) {
     returns.data = args.shift();
     returns.callback = args.shift();
   }
-  
+
   return returns;
 };
