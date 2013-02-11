@@ -1,7 +1,7 @@
 {
   "name": "restio",
   "license": "MIT",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Sérgio Ramos",
   "description": "REST-like syntax for WebSockets",
   "main": "src/server/restio.js",
@@ -17,6 +17,7 @@
     "crud"
   ],
   "dependencies": {
+    "engine.io-client": "0.4.x",
     "type-component": "0.0.x",
     "match-route": "0.1.x",
     "engine.io": "0.3.x",
@@ -24,7 +25,6 @@
     "sgen": "0.1.x"
   },
   "devDependencies": {
-    "engine.io-client": "0.4.x",
     "mocha": "1.7.x",
     "blage": "0.0.x",
     "chai": "1.4.x",
