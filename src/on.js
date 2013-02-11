@@ -1,7 +1,7 @@
-var platform = require('./platform'),
+var type = require('./requires').type,
+    platform = require('./platform'),
     packet = require('./packet'),
-    mr = require('match-route'),
-    type = require('./type');
+    mr = require('match-route')
 
 module.exports = function (socket, callbacks, routes) {
   var on = {};

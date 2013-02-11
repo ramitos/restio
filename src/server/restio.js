@@ -1,8 +1,10 @@
-var ev = require('events').EventEmitter,
+var ev = require('../requires').ev,
     methods = require('../methods'),
     setup = require('../setup'),
     cookie = require('cookie'),
     getOn = require('../on');
+
+module.exports.client = require('../client/restio');
 
 module.exports.listen = function () {
   var server = setup.server(Array.prototype.slice.call(arguments).shift());

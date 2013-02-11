@@ -1,17 +1,19 @@
-var methods = require('../methods'),
+var requires = require('../requires'),
+    methods = require('../methods'),
     packet = require('../packet'),
     setup = require('../setup'),
     mr = require('match-route'),
-    eio = require('engine.io'),
-    getOn = require('../on'),
-    ev = require('emitter');
+    getOn = require('../on');
+    
+var eio = requires.eio;
+var ev = requires.ev;
 
 module.exports.connect = function (addr, callback) {
   var socket = new eio.Socket(addr);
   var callbacks = {};
   var io = new ev();
   var routes = {};
-    
+  
   methods.forEach(function (method) {
     setup.methods(method, callbacks, routes);
     setup.request(method, io, socket, callbacks);

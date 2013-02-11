@@ -3,6 +3,5 @@ node_modules
 components
 build
 component.json
-src/client
 dist
 docs

@@ -1,10 +1,12 @@
-var methods = require('./methods'),
-    engine = require('engine.io'),
+var requires = require('../requires'),
+    methods = require('./methods'),
     packet = require('./packet'),
     assert = require('assert'),
-    type = require('./type'),
     sgen = require('sgen'),
     noop = function () {};
+
+var engine = requires.eio
+var type = requires.type
 
 module.exports.methods = function (method, callbacks, routes) {
   callbacks[method] = {};
