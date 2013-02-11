@@ -1,4 +1,4 @@
-var requires = require('../requires'),
+var requires = require('./requires'),
     methods = require('./methods'),
     packet = require('./packet'),
     assert = require('assert'),
