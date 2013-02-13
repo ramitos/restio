@@ -1,5 +1,5 @@
 {
   "name": "restio",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "main": "./dist/restio.js"
 }

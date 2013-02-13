@@ -1,7 +1,7 @@
 {
   "name": "restio",
   "license": "MIT",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "author": "Sérgio Ramos",
   "description": "REST-like syntax for WebSockets",
   "main": "src/server/restio.js",

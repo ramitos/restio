@@ -9,7 +9,6 @@ var eio = requires.eio;
 var ev = requires.ev;
 
 module.exports.connect = function (addr, opts, callback) {
-  if(type(opts) != 'object')
   var socket = setup.connect(addr, opts, callback, eio.Socket);
   var callbacks = {};
   var io = new ev();
