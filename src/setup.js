@@ -42,6 +42,15 @@ module.exports.server = function (args) {
   else return engine.attach.apply(engine, args)
 };
 
+module.exports.connect = function (addr, opts, callback, socket) {
+  if(type(opts) != 'object') {
+    callback = opts
+    opts = undefined
+  }
+  
+  return new socket(addr, opts)
+};
+
 /*********************************** PRIVATE **********************************/
 
 var isNode = function () {
